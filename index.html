@@ -21,7 +21,7 @@
     <!-- End Meta Pixel Code -->
     
     <meta charset="UTF-8">
-    <title>Redirecionando para WhatsApp...</title>
+    <title>Conectando ao WhatsApp...</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,60 +29,63 @@
             padding: 50px;
             background-color: #f5f5f5;
         }
-        .whatsapp-button {
-            background-color: #25D366;
+        .whatsapp-btn {
+            background: #25D366;
             color: white;
-            padding: 15px 25px;
-            border-radius: 5px;
+            padding: 12px 24px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
             display: inline-block;
             margin-top: 20px;
+            transition: all 0.3s;
         }
-        .loader {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #25D366;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 2s linear infinite;
-            margin: 20px auto;
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: scale(1.05);
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .countdown {
+            font-size: 1.2em;
+            color: #555;
+            margin: 15px 0;
         }
     </style>
 </head>
 <body>
-    <div class="loader"></div>
-    <h2>Você será redirecionado para o WhatsApp em <span id="countdown">5</span> segundos...</h2>
-    <p>Se o redirecionamento não funcionar, clique no botão abaixo:</p>
-    <a href="https://wa.me/5592991077007" class="whatsapp-button" id="whatsapp-btn">
-        Falar no WhatsApp Agora (+55 92 99107-7007)
+    <h2>Você será direcionado ao WhatsApp em <span id="countdown">3</span> segundos</h2>
+    <p class="countdown">Aguarde ou clique no botão abaixo para ir agora</p>
+    
+    <a href="https://wa.me/5592991077007" class="whatsapp-btn" id="whatsapp-btn">
+        <i>📱</i> CHAMAR NO WHATSAPP
     </a>
 
     <script>
-        // Contador regressivo visível
-        var countdown = 5;
-        var countdownElement = document.getElementById('countdown');
-        var countdownInterval = setInterval(function() {
-            countdown--;
-            countdownElement.textContent = countdown;
-            if (countdown <= 0) {
-                clearInterval(countdownInterval);
-            }
+        // Contador regressivo otimizado
+        let seconds = 3;
+        const countdownEl = document.getElementById('countdown');
+        
+        const timer = setInterval(() => {
+            seconds--;
+            countdownEl.textContent = seconds;
+            if(seconds <= 0) clearInterval(timer);
         }, 1000);
 
-        // Rastreia clique no botão do WhatsApp
-        document.getElementById('whatsapp-btn').addEventListener('click', function() {
+        // Rastreamento de clique no botão
+        document.getElementById('whatsapp-btn').addEventListener('click', () => {
             fbq('track', 'WhatsAppClick');
         });
 
-        // Redirecionamento garantido após 5 segundos
-        setTimeout(function() {
-            fbq('track', 'AutoRedirectToWhatsApp', {}, {eventID: Date.now()});
-            window.top.location.href = "https://wa.me/5592991077007";
+        // Redirecionamento principal após 3s
+        setTimeout(() => {
+            fbq('track', 'AutoRedirect');
+            window.location.href = "https://wa.me/5592991077007";
+        }, 3000);
+
+        // Redirecionamento de fallback após 5s
+        setTimeout(() => {
+            if(window.location.href.indexOf('whatsapp-redirect') > -1) {
+                window.location.href = "https://wa.me/5592991077007";
+            }
         }, 5000);
     </script>
 </body>
