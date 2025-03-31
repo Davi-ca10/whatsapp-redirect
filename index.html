@@ -1,64 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Meta Pixel Code -->
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '612712831768988');
-        fbq('track', 'PageView');
-    </script>
-    <noscript>
-        <img height="1" width="1" style="display:none" 
-             src="https://www.facebook.com/tr?id=612712831768988&ev=PageView&noscript=1"/>
-    </noscript>
-    <!-- End Meta Pixel Code -->
-    
-    <meta charset="UTF-8">
-    <title>Redirecionando para WhatsApp...</title>
+    <!-- Pixel Meta -->
+    <script>[SEU CÓDIGO DE PIXEL AQUI]</script>
+    <title>Fale Conosco - [Sua Empresa]</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-            background-color: #f5f5f5;
-        }
-        .whatsapp-button {
-            background-color: #25D366;
+        .whatsapp-btn {
+            background: #25D366; 
             color: white;
-            padding: 15px 25px;
-            border-radius: 5px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 20px;
             text-decoration: none;
             font-weight: bold;
-            display: inline-block;
-            margin-top: 20px;
         }
     </style>
 </head>
-<body>
-    <h2>Você será redirecionado ao WhatsApp em 3 segundos...</h2>
-    <p>Se não for redirecionado, clique no botão abaixo:</p>
-    <a href="https://wa.me/5592991077007" class="whatsapp-button" id="whatsapp-btn">
-        Falar no WhatsApp Agora (+55 92 99107-7007)
+<body style="text-align: center; padding: 50px;">
+    <h1>Fale direto com nosso time!</h1>
+    <p>Clique no botão abaixo para conversar no WhatsApp:</p>
+    
+    <!-- Botão PRIMÁRIO visível -->
+    <a href="https://wa.me/5592991077007" class="whatsapp-btn" 
+       onclick="fbq('track', 'WhatsAppClick')">
+       Chamar no WhatsApp (+55 92 99107-7007)
     </a>
+    
+    <p>Ou aguarde 5 segundos para ser redirecionado automaticamente.</p>
 
+    <!-- Redirecionamento SECUNDÁRIO (oculto) -->
     <script>
-        // Rastreia clique no botão do WhatsApp
-        document.getElementById('whatsapp-btn').addEventListener('click', function() {
-            fbq('track', 'WhatsAppClick');
-        });
-
-        // Redireciona após 3 segundos (tempo para o Pixel carregar)
-        setTimeout(function() {
-            fbq('track', 'AutoRedirectToWhatsApp');
+        setTimeout(function(){
+            fbq('track', 'AutoRedirect');
             window.location.href = "https://wa.me/5592991077007";
-        }, 3000);
+        }, 5000);
     </script>
 </body>
 </html>
