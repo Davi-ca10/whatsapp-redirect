@@ -21,18 +21,44 @@
     <!-- End Meta Pixel Code -->
     
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=https://wa.me/92991077007">
     <title>Redirecionando para WhatsApp...</title>
-    <script>
-        // Redirecionamento após o pixel ser carregado
-        window.onload = function() {
-            setTimeout(function() {
-                window.location.href = "https://wa.me/92991077007";
-            }, 500); // Pequeno atraso para garantir que o pixel foi carregado
-        };
-    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f5f5f5;
+        }
+        .whatsapp-button {
+            background-color: #25D366;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <p>Se você não for redirecionado automaticamente, <a href="https://wa.me/92991077007">clique aqui</a>.</p>
+    <h2>Você será redirecionado ao WhatsApp em 3 segundos...</h2>
+    <p>Se não for redirecionado, clique no botão abaixo:</p>
+    <a href="https://wa.me/5592991077007" class="whatsapp-button" id="whatsapp-btn">
+        Falar no WhatsApp Agora (+55 92 99107-7007)
+    </a>
+
+    <script>
+        // Rastreia clique no botão do WhatsApp
+        document.getElementById('whatsapp-btn').addEventListener('click', function() {
+            fbq('track', 'WhatsAppClick');
+        });
+
+        // Redireciona após 3 segundos (tempo para o Pixel carregar)
+        setTimeout(function() {
+            fbq('track', 'AutoRedirectToWhatsApp');
+            window.location.href = "https://wa.me/5592991077007";
+        }, 3000);
+    </script>
 </body>
 </html>
