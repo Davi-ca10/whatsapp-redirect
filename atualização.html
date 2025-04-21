@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '612712831768988');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none" 
+             src="https://www.facebook.com/tr?id=612712831768988&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- End Meta Pixel Code -->
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2C Construção - Redirecionando para WhatsApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f5f5f5;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin: 20px 0;
+            transition: all 0.3s;
+        }
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.02);
+        }
+        .countdown {
+            color: #555;
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <h2>2C Construção</h2>
+    <p>Você será direcionado ao WhatsApp em <span id="countdown">3</span> segundos</p>
+    <p class="countdown">Se o redirecionamento não funcionar, clique no botão abaixo:</p>
+    
+    <a href="https://wa.me/55929921838433?text=Olá%202C%20Construção,%20vim%20pela%20campanha%20e%20gostaria%20de%20mais%20informações!" 
+       class="whatsapp-btn" 
+       id="whatsapp-btn">
+       📱 Falar no WhatsApp
+    </a>
+
+    <script>
+        // Contador regressivo
+        let seconds = 3;
+        const countdownEl = document.getElementById('countdown');
+        
+        const timer = setInterval(() => {
+            seconds--;
+            countdownEl.textContent = seconds;
+            if(seconds <= 0) clearInterval(timer);
+        }, 1000);
+
+        // Rastreia clique no botão
+        document.getElementById('whatsapp-btn').addEventListener('click', function() {
+            fbq('track', 'WhatsAppClick');
+        });
+
+        // Redirecionamento automático
+        setTimeout(function() {
+            fbq('track', 'AutoRedirectToWhatsApp');
+            window.location.href = "https://wa.me/55929921838433?text=Olá%202C%20Construção,%20vim%20pela%20campanha%20e%20gostaria%20de%20mais%20informações!";
+        }, 3000);
+    </script>
+</body>
+</html>
